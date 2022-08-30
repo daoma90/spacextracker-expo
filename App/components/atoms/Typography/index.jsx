@@ -1,0 +1,85 @@
+import styled from "styled-components/native";
+
+const CardLargeName = styled.Text`
+  font-family: "Inter-Bold";
+  font-size: 24px;
+  color: ${(props) => props.theme.colors.white};
+  text-align: center;
+`;
+
+const CardRocketName = styled.Text`
+  font-family: "Inter-Medium";
+  font-size: 15px;
+  font-weight: 500;
+  color: ${(props) => props.theme.colors.gray};
+`;
+
+const CardLargeDate = styled.Text`
+  font-family: "Inter-Medium";
+  font-size: 15px;
+  font-weight: 500;
+  color: ${(props) => props.theme.colors.gray};
+`;
+
+const CardLargeTitle = styled.Text`
+  font-family: "Inter-Medium";
+  font-size: 16px;
+  font-weight: 500;
+  color: ${(props) => props.theme.colors.gray};
+`;
+
+const CardLargeLaunchNumber = styled.Text`
+  font-family: "Inter-Medium";
+  font-size: 16px;
+  font-weight: 500;
+  color: ${(props) => props.theme.colors.gray};
+`;
+
+const CardResult = styled.Text`
+  font-family: "Inter-Medium";
+  font-size: 16px;
+  font-weight: 500;
+  color: ${(props) => (props.success ? props.theme.colors.success : props.theme.colors.danger)};
+`;
+
+const ListCardName = styled.Text`
+  font-family: "Inter-Medium";
+  font-size: 16px;
+  font-weight: 500;
+  color: ${(props) => props.theme.colors.white};
+  max-width: 160px;
+`;
+
+const ListCardDate = styled.Text`
+  font-family: "Inter-Medium";
+  font-size: 14px;
+  font-weight: 500;
+  color: ${(props) => props.theme.colors.gray};
+`;
+
+const BreadText = styled.Text`
+  font-family: "Inter-Medium";
+  font-size: 14px;
+  font-weight: 500;
+  color: ${(props) => props.theme.colors.gray};
+`;
+
+const CountdownText = styled.Text`
+  font-family: "Inter-Bold";
+  font-size: 36px;
+  color: ${(props) => props.theme.colors.white};
+  text-align: center;
+`;
+
+export {
+  CardLargeName,
+  CardRocketName,
+  CardLargeDate,
+  CardLargeTitle,
+  CardLargeLaunchNumber,
+  CardResult,
+  ListCardName,
+  ListCardDate,
+  BreadText,
+  CountdownText,
+};

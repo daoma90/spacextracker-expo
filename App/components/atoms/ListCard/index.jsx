@@ -1,0 +1,57 @@
+import { useNavigation } from "@react-navigation/native";
+import React from "react";
+import { Text } from "react-native";
+import { useRocketContext } from "../../../../context/RocketContext";
+import { getReadableDate, getReadableTime } from "../../../../utils/convertDateTime";
+import getRocketName from "../../../../utils/getRocketName";
+import CustomImage from "../CustomImage";
+import CustomTouchable from "../CustomTouchable.jsx";
+import Divider from "../Divider";
+import * as s from "./styles";
+import * as t from "../Typography";
+import Spacer from "../Spacer";
+import DefaultIcon from "../DefaultIcon";
+
+const ListCard = ({ launch, type }) => {
+  const { rockets } = useRocketContext();
+  const navigation = useNavigation();
+  return (
+    <CustomTouchable
+      onPress={() => navigation.navigate("Details", { launch: launch, type: type })}
+      pressable
+    >
+      <s.Container>
+        <s.ImagePositioner>
+          <s.ImageContainer>
+            {launch?.links?.patch?.small ? (
+              <CustomImage image={launch?.links?.patch?.small} objectFit="contain" />
+            ) : (
+              <DefaultIcon />
+            )}
+          </s.ImageContainer>
+        </s.ImagePositioner>
+        <s.InfoContainer>
+          <s.Row>
+            <t.ListCardName>{launch?.name}</t.ListCardName>
+            <t.CardResult success={launch?.success === true}>
+              {launch?.success === true ? "success" : launch?.success === null ? "" : "failed"}
+            </t.CardResult>
+          </s.Row>
+          <Spacer direction="vertical" space="14" />
+          <Divider />
+          <Spacer direction="vertical" space="14" />
+          <s.Row>
+            <t.CardRocketName>{getRocketName(launch?.rocket, rockets)}</t.CardRocketName>
+            <s.DateContainer>
+              <t.ListCardDate>{getReadableTime(launch?.date_utc)}</t.ListCardDate>
+              <Spacer direction="horizontal" space="10" />
+              <t.ListCardDate>{getReadableDate(launch?.date_utc)}</t.ListCardDate>
+            </s.DateContainer>
+          </s.Row>
+        </s.InfoContainer>
+      </s.Container>
+    </CustomTouchable>
+  );
+};
+
+export default ListCard;
