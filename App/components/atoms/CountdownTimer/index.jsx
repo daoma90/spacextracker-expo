@@ -4,9 +4,9 @@ import * as t from "../Typography";
 import * as s from "./styles";
 
 const CountdownTimer = ({ targetDate }) => {
-  const [days, hours, minutes, seconds] = useCountdown(targetDate);
+  const [days, hours, minutes, seconds, hasLaunched] = useCountdown(targetDate);
 
-  return (
+  return !hasLaunched ? (
     <s.Container>
       <s.CountdownItem>
         <t.CountdownText>{days}</t.CountdownText>
@@ -35,6 +35,10 @@ const CountdownTimer = ({ targetDate }) => {
           <t.BreadText>SS</t.BreadText>
         </s.CountdownLabel>
       </s.CountdownItem>
+    </s.Container>
+  ) : (
+    <s.Container>
+      <t.CountdownText color="success">Launched</t.CountdownText>
     </s.Container>
   );
 };

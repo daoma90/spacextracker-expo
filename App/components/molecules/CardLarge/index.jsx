@@ -16,6 +16,7 @@ import DefaultIcon from "../../atoms/DefaultIcon";
 const CardLarge = ({ type, launch, marginBottom, pressable = true }) => {
   const { rockets } = useRocketContext();
   const navigation = useNavigation();
+  // console.log("launch", launch);
 
   return (
     <s.Container marginBottom={marginBottom}>

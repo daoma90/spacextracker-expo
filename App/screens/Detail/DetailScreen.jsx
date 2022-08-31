@@ -36,20 +36,27 @@ const DetailScreen = ({ route }) => {
         <s.HeroImageContainer>
           <s.StyledImage source={require("../../../assets/rocket-launch.png")} resizeMode="cover" />
         </s.HeroImageContainer>
-        <s.CardContainer
-          onLayout={(event) => setCardHeight(Math.floor(event.nativeEvent.layout.height))}
-          hasCountdown={launch.upcoming}
-        >
-          <CardLarge launch={launch} type={type} pressable={false} />
-        </s.CardContainer>
-
+        <LinearGradient
+          colors={["transparent", colors.background]}
+          style={s.GradientArea}
+          start={{ x: 0, y: 0.2 }}
+          end={{ x: 0, y: 0.5 }}
+        />
         <s.SecondaryContainer hasCountdown={launch.upcoming}>
-          <LinearGradient colors={["transparent", colors.background]} style={s.GradientArea} />
-          <DetailInfo />
-          <DetailList title="Payload" items={payload} />
-          <DetailList title="Launchpad" items={launchpad} />
-          <DetailList title="Target" items={target} />
-          {launch.links.youtube_id && <DetailVideo source={launch.links.youtube_id} />}
+          <s.CardContainer
+            onLayout={(event) => setCardHeight(Math.floor(event.nativeEvent.layout.height))}
+            hasCountdown={launch.upcoming}
+          >
+            <CardLarge launch={launch} type={type} pressable={false} />
+          </s.CardContainer>
+
+          <s.DetailsContainer hasCountdown={launch.upcoming}>
+            <DetailInfo />
+            <DetailList title="Payload" items={payload} />
+            <DetailList title="Launchpad" items={launchpad} />
+            <DetailList title="Target" items={target} />
+            {launch.links.youtube_id && <DetailVideo source={launch.links.youtube_id} />}
+          </s.DetailsContainer>
         </s.SecondaryContainer>
       </s.Container>
     </ScrollView>

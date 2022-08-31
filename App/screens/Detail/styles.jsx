@@ -15,16 +15,24 @@ const StyledImage = styled.Image`
 `;
 
 const CardContainer = styled.View`
-  position: absolute;
+  position: relative;
   left: 0;
   right: 0;
-  top: ${(props) => (props.hasCountdown ? "150px" : "200px")};
-  z-index: 2;
+  // top: ${(props) => (props.hasCountdown ? "150px" : "200px")};
+  top: ${(props) => (props.hasCountdown ? "-280px" : "-240px")};
+  // top: 0;
+  z-index: 5;
 `;
 
 const SecondaryContainer = styled.View`
   background-color: ${(props) => props.theme.colors.background};
-  padding-top: ${(props) => (props.hasCountdown ? "160px" : "130px")};
+  position: relative;
+  z-index: 5;
+  margin-bottom: ${(props) => (props.hasCountdown ? "-250px" : "-210px")};
+`;
+
+const DetailsContainer = styled.View`
+  top: ${(props) => (props.hasCountdown ? "-250px" : "-210px")};
 `;
 
 const GradientArea = {
@@ -32,8 +40,9 @@ const GradientArea = {
   width: "100%",
   // backgroundColor: "red",
   position: "absolute",
-  top: -100,
-  zIndex: 5,
+  top: 330,
+  zIndex: 1,
+  // backgroundColor: "red",
 };
 
 export {
@@ -43,4 +52,5 @@ export {
   CardContainer,
   SecondaryContainer,
   GradientArea,
+  DetailsContainer,
 };

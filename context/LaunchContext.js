@@ -11,8 +11,8 @@ export const LaunchProvider = ({ children }) => {
   const baseUrl = "https://api.spacexdata.com/v4/launches";
   const [nextLaunch, setNextLaunch] = useState(null);
   const [previousLaunch, setPreviousLaunch] = useState(null);
-  const [upcomingLaunches, setUpcomingLaunches] = useState([]);
-  const [pastLaunches, setPastLaunches] = useState([]);
+  // const [upcomingLaunches, setUpcomingLaunches] = useState([]);
+  // const [pastLaunches, setPastLaunches] = useState([]);
 
   const fetchNextLaunch = async () => {
     const results = await axios.get(`${baseUrl}/next`);
@@ -24,17 +24,28 @@ export const LaunchProvider = ({ children }) => {
     setPreviousLaunch(results.data);
   };
 
-  const fetchUpcomingLaunches = async () => {
-    const results = await axios.get(`${baseUrl}/upcoming`);
-    setUpcomingLaunches(results.data);
-  };
+  // const fetchUpcomingLaunches = async () => {
+  //   const results = await axios.get(`${baseUrl}/upcoming`);
+  //   setUpcomingLaunches(results.data);
+  // };
 
-  const fetchPastLaunches = async () => {
+  // const fetchPastLaunches = async (offset) => {
+  //   console.log("offset", offset);
+  //   const results = await axios.post(`${baseUrl}/query`, {
+  //     options: { limit: 10, offset: offset, sort: { date_unix: "desc" } },
+  //     query: { upcoming: false },
+  //   });
+  //   console.log("results", results.data);
+  //   // setPastLaunches(results.data.docs);
+  //   return results.data;
+  // };
+
+  const fetchLaunchList = async (upcoming, offset) => {
     const results = await axios.post(`${baseUrl}/query`, {
-      options: { limit: 10, offset: 0 },
+      options: { limit: 10, offset: offset, sort: { date_unix: upcoming ? "asc" : "desc" } },
+      query: { upcoming: upcoming },
     });
-    console.log("results", results.data);
-    setPastLaunches(results.data.docs);
+    return results.data;
   };
 
   const fetchPayload = async (payloadId) => {
@@ -52,10 +63,11 @@ export const LaunchProvider = ({ children }) => {
     fetchNextLaunch,
     previousLaunch,
     fetchPreviousLaunch,
-    upcomingLaunches,
-    fetchUpcomingLaunches,
-    pastLaunches,
-    fetchPastLaunches,
+    // upcomingLaunches,
+    // fetchUpcomingLaunches,
+    // pastLaunches,
+    // fetchPastLaunches,
+    fetchLaunchList,
     fetchPayload,
     fetchLaunchpad,
   };

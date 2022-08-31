@@ -4,14 +4,14 @@ import Background from "../../components/atoms/Background";
 import LaunchList from "../../components/molecules/LaunchList";
 
 const UpcomingScreen = () => {
-  const { upcomingLaunches, fetchUpcomingLaunches } = useLaunchContext();
-  useEffect(() => {
-    fetchUpcomingLaunches();
-  }, []);
+  // const { upcomingLaunches, fetchUpcomingLaunches } = useLaunchContext();
+  // useEffect(() => {
+  //   fetchUpcomingLaunches();
+  // }, []);
 
   return (
     <Background>
-      <LaunchList launches={upcomingLaunches} type="Upcoming launch" />
+      <LaunchList type="Upcoming launch" />
     </Background>
   );
 };

@@ -1,4 +1,7 @@
 import styled from "styled-components/native";
+import { MotiView } from "moti";
+
+const AnimateContainer = styled(MotiView)``;
 
 const Container = styled.View`
   min-height: 100px;
@@ -52,4 +55,12 @@ const DateContainer = styled.View`
   // bottom: -3px;
 `;
 
-export { Container, ImagePositioner, ImageContainer, InfoContainer, Row, DateContainer };
+export {
+  Container,
+  ImagePositioner,
+  ImageContainer,
+  InfoContainer,
+  Row,
+  DateContainer,
+  AnimateContainer,
+};

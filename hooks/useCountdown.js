@@ -13,6 +13,8 @@ const useCountdown = (targetDate) => {
     return () => clearInterval(interval);
   }, [countDownDate]);
 
+  if (new Date(targetDate).getTime() < new Date().getTime()) return [null, null, null, null, true];
+
   return getReturnValues(countdown);
 };
 
@@ -21,7 +23,6 @@ const getReturnValues = (countdown) => {
   let hours = Math.floor((countdown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   let minutes = Math.floor((countdown % (1000 * 60 * 60)) / (1000 * 60));
   let seconds = Math.floor((countdown % (1000 * 60)) / 1000);
-
   if (days < 10) days = "0" + days;
   if (hours < 10) hours = "0" + hours;
   if (minutes < 10) minutes = "0" + minutes;

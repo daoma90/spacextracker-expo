@@ -4,14 +4,14 @@ import Background from "../../components/atoms/Background";
 import LaunchList from "../../components/molecules/LaunchList";
 
 const PastScreen = () => {
-  const { pastLaunches, fetchPastLaunches } = useLaunchContext();
-  useEffect(() => {
-    fetchPastLaunches();
-  }, []);
+  // const { pastLaunches, fetchPastLaunches } = useLaunchContext();
+  // useEffect(() => {
+  //   fetchPastLaunches();
+  // }, []);
 
   return (
     <Background>
-      <LaunchList launches={pastLaunches} type="Past launch" />
+      <LaunchList type="Past launch" />
     </Background>
   );
 };

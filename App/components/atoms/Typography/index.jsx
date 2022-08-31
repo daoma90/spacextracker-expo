@@ -67,7 +67,7 @@ const BreadText = styled.Text`
 const CountdownText = styled.Text`
   font-family: "Inter-Bold";
   font-size: 36px;
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => (props.color ? props.theme.colors[props.color] : props.theme.colors.white)};
   text-align: center;
 `;
 

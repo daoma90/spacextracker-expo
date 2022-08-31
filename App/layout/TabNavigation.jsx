@@ -30,16 +30,16 @@ const TabNavigation = () => {
       <Background>
         <Tab.Navigator
           initialRouteName="HomeStack"
-          screenOptions={{ headerShown: false }}
           screenOptions={({ route }) => ({
             headerShown: false,
             tabBarLabelStyle: {
               color: colors.white,
             },
             tabBarStyle: {
-              height: 90,
+              paddingTop: 10,
+              height: 80,
               backgroundColor: colors.primaryAccent,
-              paddingBottom: 15,
+              paddingBottom: 10,
             },
             tabBarActiveTintColor: colors.cardBackground,
           })}

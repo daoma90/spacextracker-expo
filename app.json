@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "spaceXtracker",
-    "slug": "space-x-tracker",
+    "slug": "spaceXtracker",
     "owner": "daoma90",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -33,6 +33,7 @@
       "eas": {
         "projectId": "d6b00418-117d-4b51-82d9-f68c89bfaeb4"
       }
-    }
+    },
+    "jsEngine": "hermes"
   }
 }

@@ -20,9 +20,6 @@ export default function App() {
   });
 
   useEffect(() => {
-    console.log("fonts loaded", fontsLoaded);
-    console.log("next launch loaded", nextLaunch !== null);
-    console.log("previous launch loaded", previousLaunch !== null);
     if (fontsLoaded && nextLaunch !== null && previousLaunch !== null) {
       SplashScreen.hideAsync();
     }
