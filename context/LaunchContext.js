@@ -48,6 +48,35 @@ export const LaunchProvider = ({ children }) => {
     return results.data;
   };
 
+  const fetchFilteredLaunchList = async (searchString, upcoming, result, rocket) => {
+    let query = {};
+    upcoming = true;
+    if (searchString) {
+      query.$text = {
+        $search: searchString,
+      };
+    }
+
+    if (upcoming !== null) {
+      query.upcoming = upcoming;
+    }
+
+    if (result !== null) {
+      query.success = result;
+    }
+
+    if (rocket) {
+      query.rocket = rocket;
+    }
+
+    const results = await axios.post(`${baseUrl}/query`, {
+      options: {},
+      query,
+    });
+    console.log("results", results.data);
+    // return results.data;
+  };
+
   const fetchPayload = async (payloadId) => {
     const results = await axios.get(`https://api.spacexdata.com/v4/payloads/${payloadId}`);
     return results.data;
@@ -68,6 +97,7 @@ export const LaunchProvider = ({ children }) => {
     // pastLaunches,
     // fetchPastLaunches,
     fetchLaunchList,
+    fetchFilteredLaunchList,
     fetchPayload,
     fetchLaunchpad,
   };

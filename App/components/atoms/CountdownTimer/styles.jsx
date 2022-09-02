@@ -16,7 +16,6 @@ const CountdownItem = styled.View`
 `;
 
 const Separator = styled.Text`
-  font-family: "Inter-Medium";
   font-size: 24px;
   color: ${(props) => props.theme.colors.white};
   text-align: center;

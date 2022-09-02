@@ -5,6 +5,7 @@ const CardLargeName = styled.Text`
   font-size: 24px;
   color: ${(props) => props.theme.colors.white};
   text-align: center;
+  margin-bottom: 6px;
 `;
 
 const CardRocketName = styled.Text`
@@ -12,6 +13,7 @@ const CardRocketName = styled.Text`
   font-size: 15px;
   font-weight: 500;
   color: ${(props) => props.theme.colors.gray};
+  margin-bottom: ${(props) => (props.mb ? props.mb : "0")}px;
 `;
 
 const CardLargeDate = styled.Text`
@@ -26,6 +28,7 @@ const CardLargeTitle = styled.Text`
   font-size: 16px;
   font-weight: 500;
   color: ${(props) => props.theme.colors.gray};
+  margin-bottom: ${(props) => (props.mb ? props.mb : "0")}px;
 `;
 
 const CardLargeLaunchNumber = styled.Text`
@@ -48,6 +51,7 @@ const ListCardName = styled.Text`
   font-weight: 500;
   color: ${(props) => props.theme.colors.white};
   max-width: 160px;
+  margin-bottom: ${(props) => (props.mb ? props.mb : "0")}px;
 `;
 
 const ListCardDate = styled.Text`
@@ -62,6 +66,7 @@ const BreadText = styled.Text`
   font-size: 14px;
   font-weight: 500;
   color: ${(props) => props.theme.colors.gray};
+  margin-bottom: ${(props) => (props.mb ? props.mb : "0")}px;
 `;
 
 const CountdownText = styled.Text`

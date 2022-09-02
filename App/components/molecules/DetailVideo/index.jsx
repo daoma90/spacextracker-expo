@@ -9,9 +9,7 @@ const DetailVideo = ({ source }) => {
   return (
     <s.Container>
       <t.ListCardName>Watch launch</t.ListCardName>
-      <Spacer direction="vertical" space="5" />
       <Divider direction="vertical" space="20" />
-      <Spacer direction="vertical" space="10" />
       <VideoPlayer source={source} />
     </s.Container>
   );

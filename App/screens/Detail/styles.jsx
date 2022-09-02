@@ -1,6 +1,8 @@
 import styled from "styled-components/native";
 
-const Container = styled.View``;
+const Container = styled.View`
+  margin-bottom: 20px;
+`;
 
 const HeroImageContainer = styled.View`
   max-width: 100%;

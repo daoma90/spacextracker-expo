@@ -5,6 +5,7 @@ const StyledDivider = styled.View`
   height: 1px;
   width: 50%;
   background-color: ${(props) => props.theme.colors.white};
+  margin-vertical: 6px;
 `;
 
 const Divider = () => {

@@ -20,12 +20,12 @@ export default function App() {
   });
 
   useEffect(() => {
-    if (fontsLoaded && nextLaunch !== null && previousLaunch !== null) {
+    if (fontsLoaded) {
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded, nextLaunch, previousLaunch]);
+  }, [fontsLoaded]);
 
-  if (!fontsLoaded || nextLaunch === null || previousLaunch === null) {
+  if (!fontsLoaded) {
     return null;
   }
   return (

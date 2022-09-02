@@ -9,14 +9,11 @@ const DetailList = ({ title, items }) => {
   return (
     <s.Container>
       <t.ListCardName>{title}</t.ListCardName>
-      <Spacer direction="vertical" space="5" />
       <Divider direction="vertical" space="20" />
-      <Spacer direction="vertical" space="5" />
       {items ? (
         items.map((item, index) => (
           <View key={index}>
-            <t.BreadText>{item}</t.BreadText>
-            {index !== items.length - 1 && <Spacer direction="vertical" space="5" />}
+            <t.BreadText mb={index !== items.length - 1 && "6"}>{item}</t.BreadText>
           </View>
         ))
       ) : (
