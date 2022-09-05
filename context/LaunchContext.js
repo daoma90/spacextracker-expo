@@ -15,13 +15,21 @@ export const LaunchProvider = ({ children }) => {
   // const [pastLaunches, setPastLaunches] = useState([]);
 
   const fetchNextLaunch = async () => {
-    const results = await axios.get(`${baseUrl}/next`);
-    setNextLaunch(results.data);
+    try {
+      const results = await axios.get(`${baseUrl}/next`);
+      setNextLaunch(results.data);
+    } catch (e) {
+      console.log("Fetch next launch error: ", e);
+    }
   };
 
   const fetchPreviousLaunch = async () => {
-    const results = await axios.get(`${baseUrl}/latest`);
-    setPreviousLaunch(results.data);
+    try {
+      const results = await axios.get(`${baseUrl}/latest`);
+      setPreviousLaunch(results.data);
+    } catch (e) {
+      console.log("Fetch previous launch error: ", e);
+    }
   };
 
   // const fetchUpcomingLaunches = async () => {
@@ -41,11 +49,15 @@ export const LaunchProvider = ({ children }) => {
   // };
 
   const fetchLaunchList = async (upcoming, offset) => {
-    const results = await axios.post(`${baseUrl}/query`, {
-      options: { limit: 10, offset: offset, sort: { date_unix: upcoming ? "asc" : "desc" } },
-      query: { upcoming: upcoming },
-    });
-    return results.data;
+    try {
+      const results = await axios.post(`${baseUrl}/query`, {
+        options: { limit: 10, offset: offset, sort: { date_unix: upcoming ? "asc" : "desc" } },
+        query: { upcoming: upcoming },
+      });
+      return results.data;
+    } catch (e) {
+      console.log("Fetch launch list error: ", e);
+    }
   };
 
   const fetchFilteredLaunchList = async (searchString, upcoming, result, rocket) => {
@@ -69,22 +81,34 @@ export const LaunchProvider = ({ children }) => {
       query.rocket = rocket;
     }
 
-    const results = await axios.post(`${baseUrl}/query`, {
-      options: {},
-      query,
-    });
-    console.log("results", results.data);
-    // return results.data;
+    try {
+      const results = await axios.post(`${baseUrl}/query`, {
+        options: {},
+        query,
+      });
+      console.log("results", results.data);
+      // return results.data;
+    } catch (e) {
+      console.log("Filter fetch error: ", e);
+    }
   };
 
   const fetchPayload = async (payloadId) => {
-    const results = await axios.get(`https://api.spacexdata.com/v4/payloads/${payloadId}`);
-    return results.data;
+    try {
+      const results = await axios.get(`https://api.spacexdata.com/v4/payloads/${payloadId}`);
+      return results.data;
+    } catch (e) {
+      console.log("Fetch payload error: ", e);
+    }
   };
 
   const fetchLaunchpad = async (launchpadId) => {
-    const results = await axios.get(`https://api.spacexdata.com/v4/launchpads/${launchpadId}`);
-    return results.data;
+    try {
+      const results = await axios.get(`https://api.spacexdata.com/v4/launchpads/${launchpadId}`);
+      return results.data;
+    } catch (e) {
+      console.log("Fetch launchpad error: ", e);
+    }
   };
 
   const values = {

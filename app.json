@@ -18,9 +18,11 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "googleServicesFile": "./GoogleService-Info.plist"
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#201F48"
@@ -35,6 +37,7 @@
         "projectId": "d6b00418-117d-4b51-82d9-f68c89bfaeb4"
       }
     },
-    "jsEngine": "hermes"
+    "jsEngine": "hermes",
+    "plugins": ["@react-native-firebase/app"]
   }
 }

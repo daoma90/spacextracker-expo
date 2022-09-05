@@ -23,16 +23,19 @@ const TabNavigation = () => {
       <Tab.Navigator
         shifting={true}
         initialRouteName="HomeStack"
-        barStyle={{ backgroundColor: "#411414", height: 80 }}
+        barStyle={{ backgroundColor: colors.primaryAccent, height: 80 }}
         sceneContainerStyle={{ backgroundColor: colors.background }}
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarLabelStyle: {
             color: colors.white,
           },
+          tabBarIcon: {
+            marginBottom: 10,
+          },
           tabBarStyle: {
             paddingTop: 10,
-            height: 80,
+            height: 90,
             backgroundColor: colors.primaryAccent,
             paddingBottom: 10,
           },
@@ -45,6 +48,7 @@ const TabNavigation = () => {
             tabBarIcon: ({ color, size, focused }) => (
               <Ionicons name="home-outline" color={colors.white} size={/* focused ? 35 : */ 25} />
             ),
+
             tabBarLabel: "Home",
           }}
         />

@@ -12,8 +12,12 @@ export const RocketProvider = ({ children }) => {
   const [rockets, setRockets] = useState([]);
 
   const fetchRockets = async () => {
-    const results = await axios.get(`${baseUrl}`);
-    setRockets(results.data);
+    try {
+      const results = await axios.get(`${baseUrl}`);
+      setRockets(results.data);
+    } catch (e) {
+      console.log("Fetch rockets error: ", e);
+    }
   };
 
   const values = {
