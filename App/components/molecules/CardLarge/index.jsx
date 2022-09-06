@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRocketContext } from "../../../../context/RocketContext";
 import { getReadableDate, getReadableTime } from "../../../../utils/convertDateTime";
 import getRocketName from "../../../../utils/getRocketName";
@@ -10,11 +10,39 @@ import * as s from "./styles";
 import * as t from "../../atoms/Typography";
 import CountdownTimer from "../../atoms/CountdownTimer";
 import DefaultIcon from "../../atoms/DefaultIcon";
+import { useLaunchContext } from "../../../../context/LaunchContext";
+import { useCountdown } from "../../../../hooks/useCountdown";
 
-const CardLarge = ({ type, launch, marginBottom, pressable = true }) => {
+const CardLarge = ({ type, launchData = false, marginBottom, pressable = true }) => {
   const { rockets } = useRocketContext();
   const navigation = useNavigation();
+  const [launch, setLaunch] = useState(launchData);
+  const { nextLaunch, fetchNextLaunch, previousLaunch, fetchPreviousLaunch } = useLaunchContext();
+  // const [hasLaunched] = useCountdown(nextLaunch?.date_utc);
   // console.log("launch", launch);
+  // useEffect(() => {
+  //   if (!launch) {
+  //     fetchNextLaunch();
+  //     fetchPreviousLaunch();
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    if (type === "Next launch") {
+      setLaunch(nextLaunch);
+    } else if (type === "Previous launch") {
+      setLaunch(previousLaunch);
+    }
+  }, [nextLaunch, previousLaunch]);
+  let timer;
+  // useEffect(() => {
+  //   if (hasLaunched) {
+  //   timer = setTimeout(() => {
+  //     fetchNextLaunch();
+  //   }, 60000);
+  //   }
+  //   return () => clearTimeout(timer);
+  // }, [nextLaunch]);
 
   return (
     <s.Container marginBottom={marginBottom}>
@@ -46,8 +74,12 @@ const CardLarge = ({ type, launch, marginBottom, pressable = true }) => {
               <t.CardLargeName>{launch?.name}</t.CardLargeName>
               <t.CardRocketName>{getRocketName(launch?.rocket, rockets)}</t.CardRocketName>
               <Divider />
-              <t.CardLargeDate>{getReadableDate(launch?.date_utc)}</t.CardLargeDate>
-              <t.CardLargeDate>{getReadableTime(launch?.date_utc)}</t.CardLargeDate>
+              <t.CardLargeDate>
+                {getReadableDate(launch?.date_utc, launch?.date_precision)}
+              </t.CardLargeDate>
+              {launch?.date_precision === "hour" && (
+                <t.CardLargeDate>{getReadableTime(launch?.date_utc)}</t.CardLargeDate>
+              )}
             </>
           )}
         </s.CardContainer>

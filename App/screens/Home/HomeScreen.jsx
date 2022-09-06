@@ -4,24 +4,20 @@ import { useLaunchContext } from "../../../context/LaunchContext";
 import Background from "../../components/atoms/Background";
 import CardLarge from "../../components/molecules/CardLarge";
 import { MotiView } from "moti";
+import { useCountdown } from "../../../hooks/useCountdown";
+import LargeCardList from "../../components/organisms/LargeCardList";
 
 const HomeScreen = () => {
-  const { nextLaunch, fetchNextLaunch, previousLaunch, fetchPreviousLaunch } = useLaunchContext();
-  useEffect(() => {
-    fetchNextLaunch();
-    fetchPreviousLaunch();
-  }, []);
-
   return (
     <Background paddingTop="80px">
-      <ScrollView>
+      {/* <ScrollView>
         <MotiView
           from={{ translateY: 100, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1 }}
           delay={500}
           transition={{ type: "timing", duration: 500 }}
         >
-          <CardLarge type="Next launch" launch={nextLaunch} />
+          <CardLarge type="Next launch" />
         </MotiView>
         <MotiView
           from={{ translateY: 100, opacity: 0 }}
@@ -29,9 +25,10 @@ const HomeScreen = () => {
           delay={800}
           transition={{ type: "timing", duration: 500 }}
         >
-          <CardLarge type="Previous launch" launch={previousLaunch} marginBottom />
+          <CardLarge type="Previous launch" marginBottom />
         </MotiView>
-      </ScrollView>
+      </ScrollView> */}
+      <LargeCardList />
     </Background>
   );
 };

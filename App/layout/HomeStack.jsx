@@ -14,7 +14,7 @@ const HomeStack = () => {
     <Stack.Navigator
       initialRouteName="Home"
       screenOptions={({ navigation, route }) => ({
-        headerShown: true,
+        headerShown: false,
         tabBarLabelStyle: {
           color: colors.white,
         },
@@ -32,7 +32,7 @@ const HomeStack = () => {
       })}
     >
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Details" component={DetailScreen} />
+      {/* <Stack.Screen name="Details" component={DetailScreen} /> */}
     </Stack.Navigator>
   );
 };

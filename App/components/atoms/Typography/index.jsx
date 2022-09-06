@@ -76,6 +76,12 @@ const CountdownText = styled.Text`
   text-align: center;
 `;
 
+const MainButtonText = styled.Text`
+  font-family: "Inter-Medium;
+  font-size: 20px;
+  color: ${(props) => (props.color ? props.theme.colors[props.color] : props.theme.colors.white)};
+`;
+
 export {
   CardLargeName,
   CardRocketName,
@@ -87,4 +93,5 @@ export {
   ListCardDate,
   BreadText,
   CountdownText,
+  MainButtonText,
 };

@@ -8,6 +8,8 @@ import DetailVideo from "../../components/molecules/DetailVideo";
 import * as s from "./styles";
 import { LinearGradient } from "expo-linear-gradient";
 import { colors } from "../../../theme";
+import MainButton from "../../components/atoms/MainButton";
+import addToCalendar from "../../../utils/addToCalendar";
 
 const DetailScreen = ({ route }) => {
   const { launch, type } = route.params;
@@ -20,12 +22,16 @@ const DetailScreen = ({ route }) => {
     (async () => {
       if (launch.payloads[0]) {
         const payload = await fetchPayload(launch?.payloads[0]);
-        setPayload([payload.name, payload.type]);
-        setTarget([payload.orbit, payload.reference_system]);
+        if (payload) {
+          setPayload([payload.name, payload.type]);
+          setTarget([payload.orbit, payload.reference_system]);
+        }
       }
       if (launch.launchpad) {
         const launchpad = await fetchLaunchpad(launch?.launchpad);
-        setLaunchpad([launchpad.name, launchpad.full_name, launchpad.region]);
+        if (launchpad) {
+          setLaunchpad([launchpad.name, launchpad.full_name, launchpad.region]);
+        }
       }
     })();
   }, []);
@@ -42,20 +48,25 @@ const DetailScreen = ({ route }) => {
           start={{ x: 0, y: 0.2 }}
           end={{ x: 0, y: 0.5 }}
         />
-        <s.SecondaryContainer hasCountdown={launch.upcoming}>
+        <s.SecondaryContainer hasCountdown={launch?.upcoming}>
           <s.CardContainer
             onLayout={(event) => setCardHeight(Math.floor(event.nativeEvent.layout.height))}
-            hasCountdown={launch.upcoming}
+            hasCountdown={launch?.upcoming}
           >
-            <CardLarge launch={launch} type={type} pressable={false} />
+            <CardLarge launchData={launch} type={type} pressable={false} />
           </s.CardContainer>
 
-          <s.DetailsContainer hasCountdown={launch.upcoming}>
+          <s.DetailsContainer hasCountdown={launch?.upcoming}>
+            {launch?.upcoming && launch?.date_precision === "hour" && (
+              <s.ButtonContainer>
+                <MainButton buttonText="Add to calendar" onPress={() => addToCalendar(launch)} />
+              </s.ButtonContainer>
+            )}
             <DetailInfo />
             <DetailList title="Payload" items={payload} />
             <DetailList title="Launchpad" items={launchpad} />
             <DetailList title="Target" items={target} />
-            {launch.links.youtube_id && <DetailVideo source={launch.links.youtube_id} />}
+            {launch?.links?.youtube_id && <DetailVideo source={launch?.links?.youtube_id} />}
           </s.DetailsContainer>
         </s.SecondaryContainer>
       </s.Container>

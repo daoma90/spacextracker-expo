@@ -53,7 +53,9 @@ const ListCard = ({ launch, type, index }) => {
                   <t.ListCardDate>{getReadableTime(launch?.date_utc)}</t.ListCardDate>
                 )}
                 <Spacer direction="horizontal" space="10" />
-                <t.ListCardDate>{getReadableDate(launch?.date_utc)}</t.ListCardDate>
+                <t.ListCardDate>
+                  {getReadableDate(launch?.date_utc, launch?.date_precision)}
+                </t.ListCardDate>
               </s.DateContainer>
             </s.Row>
           </s.InfoContainer>

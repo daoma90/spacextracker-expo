@@ -11,7 +11,7 @@ const PastStack = () => {
     <Stack.Navigator
       initialRouteName="Past"
       screenOptions={({ navigation, route }) => ({
-        headerShown: true,
+        headerShown: false,
         tabBarLabelStyle: {
           color: colors.white,
         },
@@ -30,7 +30,7 @@ const PastStack = () => {
       })}
     >
       <Stack.Screen name="Past" component={PastScreen} />
-      <Stack.Screen name="Details" component={DetailScreen} />
+      {/* <Stack.Screen name="Details" component={DetailScreen} /> */}
     </Stack.Navigator>
   );
 };

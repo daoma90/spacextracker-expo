@@ -12,7 +12,7 @@ const UpcomingStack = () => {
     <Stack.Navigator
       initialRouteName="Upcoming"
       screenOptions={({ navigation, route }) => ({
-        headerShown: true,
+        headerShown: false,
         tabBarLabelStyle: {
           color: colors.white,
         },
@@ -31,7 +31,7 @@ const UpcomingStack = () => {
       })}
     >
       <Stack.Screen name="Upcoming" component={UpcomingScreen} />
-      <Stack.Screen name="Details" component={DetailScreen} />
+      {/* <Stack.Screen name="Details" component={DetailScreen} /> */}
     </Stack.Navigator>
   );
 };

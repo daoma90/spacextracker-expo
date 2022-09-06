@@ -1,14 +1,16 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import DetailScreen from "../screens/Detail/DetailScreen";
 import { colors } from "../../theme";
 import BackButton from "../components/atoms/BackButton";
-import FilterScreen from "../screens/Filter/FilterScreen";
+import TabNavigation from "./TabNavigation";
 
-const FilterStack = () => {
-  const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator();
+
+const HomeStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="FilterStack"
+      initialRouteName="Root"
       screenOptions={({ navigation, route }) => ({
         headerShown: true,
         tabBarLabelStyle: {
@@ -24,14 +26,13 @@ const FilterStack = () => {
           height: 90,
           backgroundColor: colors.primaryAccent,
         },
-        tabBarActiveTintColor: colors.cardBackground,
         headerLeft: () => <BackButton navigation={navigation} />,
       })}
     >
-      <Stack.Screen name="Past" component={FilterScreen} />
-      {/* <Stack.Screen name="Details" component={DetailScreen} /> */}
+      <Stack.Screen name="Rocket go BRRR" component={TabNavigation} />
+      <Stack.Screen name="Details" component={DetailScreen} />
     </Stack.Navigator>
   );
 };
 
-export default FilterStack;
+export default HomeStack;

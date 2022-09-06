@@ -86,7 +86,7 @@ export const LaunchProvider = ({ children }) => {
         options: {},
         query,
       });
-      console.log("results", results.data);
+      // console.log("results", results.data);
       // return results.data;
     } catch (e) {
       console.log("Filter fetch error: ", e);

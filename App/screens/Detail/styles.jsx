@@ -35,6 +35,7 @@ const SecondaryContainer = styled.View`
 
 const DetailsContainer = styled.View`
   top: ${(props) => (props.hasCountdown ? "-250px" : "-210px")};
+  margin-bottom: 50px;
 `;
 
 const GradientArea = {
@@ -47,6 +48,11 @@ const GradientArea = {
   // backgroundColor: "red",
 };
 
+const ButtonContainer = styled.View`
+  padding-horizontal: 15px;
+  margin-bottom: 20px;
+`;
+
 export {
   Container,
   HeroImageContainer,
@@ -55,4 +61,5 @@ export {
   SecondaryContainer,
   GradientArea,
   DetailsContainer,
+  ButtonContainer,
 };

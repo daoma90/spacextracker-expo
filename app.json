@@ -19,9 +19,14 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "bundleIdentifier": "com.daoma90.spaceXtracker",
+      "infoPlist": {
+        "NSRemindersUsageDescription": "This app uses the calendar"
+      }
     },
     "android": {
+      "permissions": ["READ_CALENDAR", "WRITE_CALENDAR"],
       "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
@@ -37,7 +42,6 @@
         "projectId": "d6b00418-117d-4b51-82d9-f68c89bfaeb4"
       }
     },
-    "jsEngine": "hermes",
-    "plugins": ["@react-native-firebase/app"]
+    "jsEngine": "hermes"
   }
 }

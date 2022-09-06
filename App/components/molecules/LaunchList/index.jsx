@@ -17,14 +17,18 @@ const LaunchList = ({ type }) => {
 
     if (type === "Upcoming launch") {
       const results = await fetchLaunchList(true, launches.length);
-      setLaunches((prevState) => [...prevState, ...results.docs]);
-      setHasNextPage(results.hasNextPage);
-      setIsLoadingNextPage(false);
+      if (results) {
+        setLaunches((prevState) => [...prevState, ...results.docs]);
+        setHasNextPage(results.hasNextPage);
+        setIsLoadingNextPage(false);
+      }
     } else if (type === "Past launch") {
       const results = await fetchLaunchList(false, launches.length);
-      setLaunches((prevState) => [...prevState, ...results.docs]);
-      setHasNextPage(results.hasNextPage);
-      setIsLoadingNextPage(false);
+      if (results) {
+        setLaunches((prevState) => [...prevState, ...results.docs]);
+        setHasNextPage(results.hasNextPage);
+        setIsLoadingNextPage(false);
+      }
     }
   };
 

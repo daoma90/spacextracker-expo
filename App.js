@@ -1,16 +1,17 @@
 import { useFonts } from "expo-font";
-import { useCallback, useEffect } from "react";
-import TabNavigation from "./App/layout/TabNavigation";
+import { useEffect } from "react";
+import RootStack from "./App/layout/RootStack";
 import { LaunchProvider, useLaunchContext } from "./context/LaunchContext";
 import { RocketProvider } from "./context/RocketContext";
 import { Theme } from "./theme";
 import * as SplashScreen from "expo-splash-screen";
 import { LogBox } from "react-native";
+import { NavigationContainer, DarkTheme } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 
 LogBox.ignoreLogs(["EventEmitter.removeListener"]);
 
 export default function App() {
-  const { nextLaunch, previousLaunch } = useLaunchContext();
   const [fontsLoaded] = useFonts({
     "Inter-Light": require("./assets/fonts/Inter-Light.otf"),
     "Inter-Regular": require("./assets/fonts/Inter-Regular.otf"),
@@ -32,9 +33,13 @@ export default function App() {
     <Theme>
       <RocketProvider>
         <LaunchProvider>
-          <TabNavigation />
+          <NavigationContainer theme={DarkTheme}>
+            {/* <TabNavigation /> */}
+            <RootStack />
+          </NavigationContainer>
         </LaunchProvider>
       </RocketProvider>
+      <StatusBar style="light" />
     </Theme>
   );
 }
