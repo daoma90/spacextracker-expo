@@ -14,28 +14,7 @@ import SideScroller from "../../components/molecules/SideScroller";
 
 const DetailScreen = ({ route }) => {
   const { launch, type } = route.params;
-  const { fetchPayload, fetchLaunchpad } = useLaunchContext();
-  const [payload, setPayload] = useState(null);
-  const [launchpad, setLaunchpad] = useState(null);
-  const [target, setTarget] = useState(null);
   const [cardHeight, setCardHeight] = useState();
-  useEffect(() => {
-    (async () => {
-      if (launch.payloads[0]) {
-        const payload = await fetchPayload(launch?.payloads[0]);
-        if (payload) {
-          setPayload([payload.name, payload.type]);
-          setTarget([payload.orbit, payload.reference_system]);
-        }
-      }
-      if (launch.launchpad) {
-        const launchpad = await fetchLaunchpad(launch?.launchpad);
-        if (launchpad) {
-          setLaunchpad([launchpad.name, launchpad.full_name, launchpad.region]);
-        }
-      }
-    })();
-  }, []);
 
   return (
     <ScrollView>
@@ -64,9 +43,22 @@ const DetailScreen = ({ route }) => {
               </s.ButtonContainer>
             )}
             <DetailInfo />
-            <DetailList title="Payload" items={payload} />
-            <DetailList title="Launchpad" items={launchpad} />
-            <DetailList title="Target" items={target} />
+            <DetailList
+              title="Payload"
+              items={[launch?.payloads[0].name, launch?.payloads[0]?.type]}
+            />
+            <DetailList
+              title="Launchpad"
+              items={[
+                launch?.launchpad?.name,
+                launch?.launchpad?.full_name,
+                launch?.launchpad?.region,
+              ]}
+            />
+            <DetailList
+              title="Target"
+              items={[launch?.payloads[0].orbit, launch?.payloads[0]?.reference_system]}
+            />
             {launch?.links?.youtube_id && <DetailVideo source={launch?.links?.youtube_id} />}
             {launch?.links?.flickr?.small?.length > 0 ? (
               <SideScroller items={launch.links.flickr.small} />

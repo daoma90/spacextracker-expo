@@ -1,20 +1,13 @@
-import React, { useEffect } from "react";
-import { ScrollView, Text } from "react-native";
-import { useLaunchContext } from "../../../context/LaunchContext";
+import React from "react";
 import Background from "../../components/atoms/Background";
-import CardLarge from "../../components/molecules/CardLarge";
-import { MotiView } from "moti";
+import FilterForm from "../../components/molecules/FilterForm";
+import LaunchList from "../../components/molecules/LaunchList";
 
 const FilterScreen = () => {
-  const { fetchFilteredLaunchList } = useLaunchContext();
-
-  useEffect(() => {
-    fetchFilteredLaunchList();
-  });
-
   return (
     <Background paddingTop="80px">
-      <Text>Filter</Text>
+      <FilterForm />
+      {/* <LaunchList /> */}
     </Background>
   );
 };

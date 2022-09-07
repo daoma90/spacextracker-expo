@@ -26,11 +26,21 @@ export const LaunchProvider = ({ children }) => {
           },
         },
       });
-      setNextLaunch(results.data);
+      // console.log("results", results.data.docs);
+      setNextLaunch(results.data.docs[0]);
     } catch (e) {
       console.log("Fetch next launch error: ", e);
     }
   };
+
+  // const fetchNextLaunch = async () => {
+  //   try {
+  //     const results = await axios.get(`${baseUrl}/next`);
+  //     setNextLaunch(results.data);
+  //   } catch (e) {
+  //     console.log("Fetch next launch error: ", e);
+  //   }
+  // };
 
   const fetchPreviousLaunch = async () => {
     try {
@@ -46,7 +56,7 @@ export const LaunchProvider = ({ children }) => {
           },
         },
       });
-      setPreviousLaunch(results.data);
+      setPreviousLaunch(results.data.docs[0]);
     } catch (e) {
       console.log("Fetch previous launch error: ", e);
     }
@@ -54,7 +64,12 @@ export const LaunchProvider = ({ children }) => {
   const fetchLaunchList = async (upcoming, offset) => {
     try {
       const results = await axios.post(`${baseUrl}/query`, {
-        options: { limit: 10, offset: offset, sort: { date_unix: upcoming ? "asc" : "desc" } },
+        options: {
+          limit: 10,
+          offset: offset,
+          sort: { date_unix: upcoming ? "asc" : "desc" },
+          populate: ["payloads", "rocket", "launchpad"],
+        },
         query: { upcoming: upcoming },
       });
       return results.data;
@@ -65,7 +80,6 @@ export const LaunchProvider = ({ children }) => {
 
   const fetchFilteredLaunchList = async (searchString, upcoming, result, rocket) => {
     let query = {};
-    upcoming = true;
     if (searchString) {
       query.$text = {
         $search: searchString,
@@ -84,16 +98,14 @@ export const LaunchProvider = ({ children }) => {
       query.rocket = rocket;
     }
 
-    try {
-      const results = await axios.post(`${baseUrl}/query`, {
-        options: {},
-        query,
-      });
-      // console.log("results", results.data);
-      // return results.data;
-    } catch (e) {
-      console.log("Filter fetch error: ", e);
-    }
+    const results = await axios.post(`${baseUrl}/query`, {
+      options: { populate: ["payloads", "rocket", "launchpad"] },
+      query,
+    });
+
+    // console.log("query", query);
+    console.log("results", results.data);
+    return results.data;
   };
 
   const fetchPayload = async (payloadId) => {

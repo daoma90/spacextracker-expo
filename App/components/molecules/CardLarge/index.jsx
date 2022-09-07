@@ -14,12 +14,11 @@ import { useLaunchContext } from "../../../../context/LaunchContext";
 import { useCountdown } from "../../../../hooks/useCountdown";
 
 const CardLarge = ({ type, launchData = false, marginBottom, pressable = true }) => {
-  const { rockets } = useRocketContext();
   const navigation = useNavigation();
   const [launch, setLaunch] = useState(launchData);
   const { nextLaunch, fetchNextLaunch, previousLaunch, fetchPreviousLaunch } = useLaunchContext();
   // const [hasLaunched] = useCountdown(nextLaunch?.date_utc);
-  console.log("launch", launch);
+  // console.log("launch", launch);
   // useEffect(() => {
   //   if (!launch) {
   //     fetchNextLaunch();
@@ -72,7 +71,7 @@ const CardLarge = ({ type, launchData = false, marginBottom, pressable = true })
 
               {launch?.upcoming && <CountdownTimer targetDate={launch.date_utc} />}
               <t.CardLargeName>{launch?.name}</t.CardLargeName>
-              <t.CardRocketName>{getRocketName(launch?.rocket, rockets)}</t.CardRocketName>
+              <t.CardRocketName>{launch?.rocket?.name}</t.CardRocketName>
               <Divider />
               <t.CardLargeDate>
                 {getReadableDate(launch?.date_utc, launch?.date_precision)}

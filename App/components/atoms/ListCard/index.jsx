@@ -47,7 +47,7 @@ const ListCard = ({ launch, type, index }) => {
             <Divider />
             <Spacer direction="vertical" space="14" />
             <s.Row>
-              <t.CardRocketName>{getRocketName(launch?.rocket, rockets)}</t.CardRocketName>
+              <t.CardRocketName>{launch?.rocket?.name}</t.CardRocketName>
               <s.DateContainer>
                 {launch?.date_precision === "hour" && (
                   <t.ListCardDate>{getReadableTime(launch?.date_utc)}</t.ListCardDate>

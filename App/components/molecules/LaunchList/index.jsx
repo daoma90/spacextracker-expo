@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, View, ActivityIndicator } from "react-native";
 import { useLaunchContext } from "../../../../context/LaunchContext";
-import ListCard from "../../atoms/ListCard";
 import { colors } from "../../../../theme";
 import * as s from "./styles";
+import ListCard from "../../atoms/ListCard";
+import LaunchListRender from "./LaunchListRender";
 
 const LaunchList = ({ type }) => {
   const [launches, setLaunches] = useState([]);
@@ -52,22 +53,30 @@ const LaunchList = ({ type }) => {
   }, []);
   return (
     launches.length > 0 && (
-      <FlatList
-        data={launches}
-        keyExtractor={(item, index) => `${type}-${index}`}
-        ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
-        renderItem={({ item, index }) => (
-          <ListCard type={type} launch={{ item }.item} index={index} />
-        )}
-        ListHeaderComponent={() => <View style={{ height: 20 }} />}
-        ListFooterComponent={() => (
-          <s.ListFooterContainer>
-            {hasNextPage && <ActivityIndicator size="small" color={colors.white} />}
-          </s.ListFooterContainer>
-        )}
-        onEndReached={hasNextPage ? handleFetchLaunchList : null}
-        onEndReachedThreshold={0.5}
-        onRefresh={handleRefreshLaunchList}
+      // <FlatList
+      //   data={launches}
+      //   keyExtractor={(item, index) => `${type}-${index}`}
+      //   ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+      //   renderItem={({ item, index }) => (
+      //     <ListCard type={type} launch={{ item }.item} index={index} />
+      //   )}
+      //   ListHeaderComponent={() => <View style={{ height: 20 }} />}
+      //   ListFooterComponent={() => (
+      //     <s.ListFooterContainer>
+      //       {hasNextPage && <ActivityIndicator size="small" color={colors.white} />}
+      //     </s.ListFooterContainer>
+      //   )}
+      //   onEndReached={hasNextPage ? handleFetchLaunchList : null}
+      //   onEndReachedThreshold={0.5}
+      //   onRefresh={handleRefreshLaunchList}
+      //   refreshing={refreshing}
+      // />
+      <LaunchListRender
+        launches={launches}
+        type={type}
+        hasNextPage={hasNextPage}
+        handleFetchLaunchList={handleFetchLaunchList}
+        handleRefreshLaunchList={handleRefreshLaunchList}
         refreshing={refreshing}
       />
     )

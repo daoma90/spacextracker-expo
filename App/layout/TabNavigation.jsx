@@ -9,6 +9,7 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import FilterStack from "./FilterStack";
 import TabIcon from "../components/atoms/TabIcon";
+import { Platform } from "react-native";
 // const Tab = createMaterialBottomTabNavigator();
 const Tab = createBottomTabNavigator();
 const TabNavigation = () => {
@@ -29,10 +30,10 @@ const TabNavigation = () => {
         //   marginTop: -10,
         // },
         tabBarStyle: {
-          paddingTop: 10,
-          height: 80,
+          // paddingTop: 10,
+          height: 70,
           backgroundColor: colors.primaryAccent,
-          paddingBottom: 20,
+          // paddingBottom: Platform.OS === "ios" ? 20 : 10,
         },
       })}
     >

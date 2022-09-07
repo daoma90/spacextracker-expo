@@ -4,6 +4,7 @@ const Container = styled.View`
   margin-top: 80px;
   margin-bottom: ${(props) => (props.marginBottom ? "50px" : "0")};
   margin-horizontal: 20px;
+  position: relative;
 `;
 
 const ImagePositioner = styled.View`
@@ -12,11 +13,11 @@ const ImagePositioner = styled.View`
   position: absolute;
   width: 100%;
   top: -65px;
-  z-index: 2;
+  z-index: 10000;
 `;
 
 const ImageContainer = styled.View`
-  position: absolute;
+  // position: absolute;
   height: 130px;
   width: 130px;
 `;
@@ -29,6 +30,7 @@ const CardContainer = styled.View`
   padding: 15px;
   border-radius: 15px;
   min-height: ${(props) => (props.minHeight ? "322.7px" : "0")};
+  z-index: 10;
 `;
 
 const LaunchNumberContainer = styled.View`
