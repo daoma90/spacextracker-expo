@@ -50,7 +50,6 @@ export const LaunchProvider = ({ children }) => {
 
   const fetchFilteredLaunchList = async (searchString, upcoming, result, rocket) => {
     let query = {};
-    upcoming = true;
     if (searchString) {
       query.$text = {
         $search: searchString,
@@ -73,8 +72,10 @@ export const LaunchProvider = ({ children }) => {
       options: {},
       query,
     });
+
+    // console.log("query", query);
     console.log("results", results.data);
-    // return results.data;
+    return results.data;
   };
 
   const fetchPayload = async (payloadId) => {
