@@ -7,7 +7,12 @@ const BackButton = ({ navigation }) => {
   if (navigation.getState().index !== 0) {
     return (
       <CustomTouchable onPress={() => navigation.goBack()} pressable={true}>
-        <Ionicons name="arrow-back" color={colors.white} size={25} />
+        <Ionicons
+          name="arrow-back"
+          color={colors.white}
+          size={25}
+          style={{ paddingVertical: 10, paddingRight: 20 }}
+        />
       </CustomTouchable>
     );
   }

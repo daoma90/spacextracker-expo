@@ -11,12 +11,21 @@ export const LaunchProvider = ({ children }) => {
   const baseUrl = "https://api.spacexdata.com/v4/launches";
   const [nextLaunch, setNextLaunch] = useState(null);
   const [previousLaunch, setPreviousLaunch] = useState(null);
-  // const [upcomingLaunches, setUpcomingLaunches] = useState([]);
-  // const [pastLaunches, setPastLaunches] = useState([]);
 
   const fetchNextLaunch = async () => {
     try {
-      const results = await axios.get(`${baseUrl}/next`);
+      const results = await axios.post(`${baseUrl}/query`, {
+        query: {
+          upcoming: true,
+        },
+        options: {
+          populate: ["payloads", "rocket", "launchpad"],
+          limit: 1,
+          sort: {
+            flight_number: "asc",
+          },
+        },
+      });
       setNextLaunch(results.data);
     } catch (e) {
       console.log("Fetch next launch error: ", e);
@@ -25,29 +34,23 @@ export const LaunchProvider = ({ children }) => {
 
   const fetchPreviousLaunch = async () => {
     try {
-      const results = await axios.get(`${baseUrl}/latest`);
+      const results = await axios.post(`${baseUrl}/query`, {
+        query: {
+          upcoming: false,
+        },
+        options: {
+          populate: ["payloads", "rocket", "launchpad"],
+          limit: 1,
+          sort: {
+            flight_number: "desc",
+          },
+        },
+      });
       setPreviousLaunch(results.data);
     } catch (e) {
       console.log("Fetch previous launch error: ", e);
     }
   };
-
-  // const fetchUpcomingLaunches = async () => {
-  //   const results = await axios.get(`${baseUrl}/upcoming`);
-  //   setUpcomingLaunches(results.data);
-  // };
-
-  // const fetchPastLaunches = async (offset) => {
-  //   console.log("offset", offset);
-  //   const results = await axios.post(`${baseUrl}/query`, {
-  //     options: { limit: 10, offset: offset, sort: { date_unix: "desc" } },
-  //     query: { upcoming: false },
-  //   });
-  //   console.log("results", results.data);
-  //   // setPastLaunches(results.data.docs);
-  //   return results.data;
-  // };
-
   const fetchLaunchList = async (upcoming, offset) => {
     try {
       const results = await axios.post(`${baseUrl}/query`, {
@@ -116,10 +119,6 @@ export const LaunchProvider = ({ children }) => {
     fetchNextLaunch,
     previousLaunch,
     fetchPreviousLaunch,
-    // upcomingLaunches,
-    // fetchUpcomingLaunches,
-    // pastLaunches,
-    // fetchPastLaunches,
     fetchLaunchList,
     fetchFilteredLaunchList,
     fetchPayload,

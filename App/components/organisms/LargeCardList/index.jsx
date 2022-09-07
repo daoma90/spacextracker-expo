@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, RefreshControl, View } from "react-native";
+import { FlatList, RefreshControl, View } from "react-native";
 import { useLaunchContext } from "../../../../context/LaunchContext";
 import CardLarge from "../../molecules/CardLarge";
 import { MotiView } from "moti";
@@ -8,8 +8,10 @@ import { colors } from "../../../../theme";
 const LargeCardList = () => {
   const { nextLaunch, fetchNextLaunch, previousLaunch, fetchPreviousLaunch } = useLaunchContext();
   const [refreshing, setRefreshing] = useState(false);
+  const [launches, setLaunches] = useState([]);
 
   const handleRefresh = async () => {
+    console.log("refreshing");
     setRefreshing(true);
     await fetchNextLaunch();
     await fetchPreviousLaunch();
@@ -21,10 +23,14 @@ const LargeCardList = () => {
     fetchPreviousLaunch();
   }, []);
 
-  return nextLaunch || previousLaunch ? (
+  useEffect(() => {
+    setLaunches([nextLaunch, previousLaunch]);
+  }, [nextLaunch, previousLaunch]);
+
+  return launches.length > 0 ? (
     <FlatList
-      data={[nextLaunch, previousLaunch]}
-      keyExtractor={(item) => `${item?.id}`}
+      data={launches}
+      keyExtractor={(item, index) => `${item?.id}-${index}`}
       ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
       renderItem={({ item, index }) => {
         return (

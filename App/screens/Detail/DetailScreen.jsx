@@ -10,6 +10,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { colors } from "../../../theme";
 import MainButton from "../../components/atoms/MainButton";
 import addToCalendar from "../../../utils/addToCalendar";
+import SideScroller from "../../components/molecules/SideScroller";
 
 const DetailScreen = ({ route }) => {
   const { launch, type } = route.params;
@@ -67,6 +68,11 @@ const DetailScreen = ({ route }) => {
             <DetailList title="Launchpad" items={launchpad} />
             <DetailList title="Target" items={target} />
             {launch?.links?.youtube_id && <DetailVideo source={launch?.links?.youtube_id} />}
+            {launch?.links?.flickr?.small?.length > 0 ? (
+              <SideScroller items={launch.links.flickr.small} />
+            ) : launch?.links?.flickr?.original?.length > 0 ? (
+              <SideScroller items={launch.links.flickr.original} />
+            ) : null}
           </s.DetailsContainer>
         </s.SecondaryContainer>
       </s.Container>

@@ -77,8 +77,14 @@ const CountdownText = styled.Text`
 `;
 
 const MainButtonText = styled.Text`
-  font-family: "Inter-Medium;
+  font-family: "Inter-Medium";
   font-size: 20px;
+  color: ${(props) => (props.color ? props.theme.colors[props.color] : props.theme.colors.white)};
+`;
+
+const TabLabel = styled.Text`
+  font-family: "Inter-Medium";
+  font-size: 10px;
   color: ${(props) => (props.color ? props.theme.colors[props.color] : props.theme.colors.white)};
 `;
 
@@ -94,4 +100,5 @@ export {
   BreadText,
   CountdownText,
   MainButtonText,
+  TabLabel,
 };

@@ -30,7 +30,15 @@ const HomeStack = () => {
       })}
     >
       <Stack.Screen name="Rocket go BRRR" component={TabNavigation} />
-      <Stack.Screen name="Details" component={DetailScreen} />
+      <Stack.Screen
+        name="Details"
+        component={DetailScreen}
+        // options={{
+        //   headerStyle: {
+        //     backgroundColor: "transparent",
+        //   },
+        // }}
+      />
     </Stack.Navigator>
   );
 };

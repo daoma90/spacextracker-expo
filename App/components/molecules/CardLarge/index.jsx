@@ -19,7 +19,7 @@ const CardLarge = ({ type, launchData = false, marginBottom, pressable = true })
   const [launch, setLaunch] = useState(launchData);
   const { nextLaunch, fetchNextLaunch, previousLaunch, fetchPreviousLaunch } = useLaunchContext();
   // const [hasLaunched] = useCountdown(nextLaunch?.date_utc);
-  // console.log("launch", launch);
+  console.log("launch", launch);
   // useEffect(() => {
   //   if (!launch) {
   //     fetchNextLaunch();

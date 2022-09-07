@@ -19,7 +19,7 @@ const ListCard = ({ launch, type, index }) => {
     <MotiView
       from={index < 10 && { translateX: 400 }}
       animate={index < 10 && { translateX: 0 }}
-      transition={index < 10 && { type: "timing", duration: 500 }}
+      transition={index < 10 && { type: "timing", duration: 300, ease: "out" }}
       delay={index * 50}
     >
       <CustomTouchable

@@ -6,34 +6,33 @@ import PastStack from "./PastStack";
 import UpcomingStack from "./UpcomingStack";
 import HomeStack from "./HomeStack";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import FilterStack from "./FilterStack";
-const Tab = createMaterialBottomTabNavigator();
+import TabIcon from "../components/atoms/TabIcon";
+// const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 const TabNavigation = () => {
-  const { fetchRockets } = useRocketContext();
+  // const { fetchRockets } = useRocketContext();
 
-  useEffect(() => {
-    fetchRockets();
-  }, []);
+  // useEffect(() => {
+  //   fetchRockets();
+  // }, []);
 
   return (
     <Tab.Navigator
-      shifting={true}
       initialRouteName="HomeStack"
-      barStyle={{ backgroundColor: colors.primaryAccent, height: 80 }}
       sceneContainerStyle={{ backgroundColor: colors.background }}
       screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarLabelStyle: {
-          color: colors.white,
-        },
-        tabBarIcon: {
-          marginBottom: 10,
-        },
+        // tabBarLabelStyle: {
+        //   color: colors.white,
+        //   marginTop: -10,
+        // },
         tabBarStyle: {
           paddingTop: 10,
-          height: 90,
+          height: 80,
           backgroundColor: colors.primaryAccent,
-          paddingBottom: 10,
+          paddingBottom: 20,
         },
       })}
     >
@@ -41,44 +40,128 @@ const TabNavigation = () => {
         name="HomeStack"
         component={HomeStack}
         options={{
-          tabBarIcon: ({ color, size, focused }) => (
-            <Ionicons name="home-outline" color={colors.white} size={25} />
+          tabBarButton: (props) => (
+            <TabIcon
+              icon="home-outline"
+              label="Home"
+              focused={props.accessibilityState.selected}
+              onPress={props.onPress}
+            />
           ),
 
-          tabBarLabel: "Home",
+          // tabBarLabel: "Home",
         }}
       />
       <Tab.Screen
         name="UpcomingStack"
         component={UpcomingStack}
         options={{
-          tabBarIcon: ({ color, size, focused }) => (
-            <Ionicons name="time-outline" color={colors.white} size={25} />
+          tabBarButton: (props) => (
+            <TabIcon
+              icon="time-outline"
+              label="Upcoming"
+              focused={props.accessibilityState.selected}
+              onPress={props.onPress}
+            />
           ),
-          tabBarLabel: "Upcoming",
+          // tabBarIcon: ({ focused }) => (
+          //   // <Ionicons name="time-outline" color={colors.white} size={25} />
+          //   <TabIcon icon="time-outline" focused={focused} />
+          // ),
+          // tabBarLabel: "Upcoming",
         }}
       />
       <Tab.Screen
         name="PastStack"
         component={PastStack}
         options={{
-          tabBarIcon: ({ color, size, focused }) => (
-            <Ionicons name="calendar-outline" color={colors.white} size={25} />
+          tabBarButton: (props) => (
+            <TabIcon
+              icon="calendar-outline"
+              label="Past"
+              focused={props.accessibilityState.selected}
+              onPress={props.onPress}
+            />
           ),
-          tabBarLabel: "Past",
+          // tabBarLabel: "Past",
         }}
       />
       <Tab.Screen
         name="FilterStack"
         component={FilterStack}
         options={{
-          tabBarIcon: ({ color, size, focused }) => (
-            <Ionicons name="search-outline" color={colors.white} size={25} />
+          tabBarButton: (props) => (
+            <TabIcon
+              icon="search-outline"
+              label="Filter"
+              focused={props.accessibilityState.selected}
+              onPress={props.onPress}
+            />
           ),
-          tabBarLabel: "Filter",
+          // tabBarLabel: "Filter",
         }}
       />
     </Tab.Navigator>
+    // <Tab.Navigator
+    //   shifting={false}
+    //   initialRouteName="HomeStack"
+    //   barStyle={{ backgroundColor: colors.primaryAccent, height: 80 }}
+    //   sceneContainerStyle={{ backgroundColor: colors.background }}
+    //   screenOptions={({ route }) => ({
+    //     headerShown: false,
+    //     tabBarLabelStyle: {
+    //       color: colors.white,
+    //     },
+    //   })}
+    //   barStyle={{
+    //     paddingTop: 10,
+    //     height: 80,
+    //     backgroundColor: colors.primaryAccent,
+    //     paddingBottom: 10,
+    //   }}
+    // >
+    //   <Tab.Screen
+    //     name="HomeStack"
+    //     component={HomeStack}
+    //     options={{
+    //       tabBarIcon: ({ color, size, focused }) => (
+    //         <Ionicons name="home-outline" color={colors.white} size={25} />
+    //       ),
+
+    //       tabBarLabel: "Home",
+    //     }}
+    //   />
+    //   <Tab.Screen
+    //     name="UpcomingStack"
+    //     component={UpcomingStack}
+    //     options={{
+    //       tabBarIcon: ({ color, size, focused }) => (
+    //         <Ionicons name="time-outline" color={colors.white} size={25} />
+    //       ),
+    //       tabBarLabel: "Upcoming",
+    //     }}
+    //   />
+    //   <Tab.Screen
+    //     name="PastStack"
+    //     component={PastStack}
+    //     options={{
+    //       tabBarIcon: ({ color, size, focused }) => (
+    //         <Ionicons name="calendar-outline" color={colors.white} size={25} />
+    //       ),
+    //       tabBarLabel: "Past",
+    //     }}
+    //   />
+    //   <Tab.Screen
+    //     name="FilterStack"
+    //     component={FilterStack}
+    //     options={{
+    //       tabBarIcon: ({ color, size, focused }) => (
+    //         <Ionicons name="search-outline" color={colors.white} size={25} />
+    //       ),
+    //       tabBarLabel: "Filter",
+    //     }}
+    //   />
+    // </Tab.Navigator>
   );
 };
 

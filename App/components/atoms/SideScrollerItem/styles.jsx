@@ -1,8 +1,8 @@
 import styled from "styled-components/native";
 
 const Container = styled.View`
-  //   height: 100%;
-  margin-top: 5px;
+  height: 130px;
+  width: 200px;
 `;
 
 export { Container };
